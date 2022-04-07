@@ -1,9 +1,9 @@
 ﻿using Application.Mappings;
-using Board = ScrumBoard.Models.Boards;
+using Domain.Entities;
 
 namespace Application.Boards.Queries.GetTasks;
 
-public class BoardDto : IMapFrom<Board>
+public class BoardDto : IMapFrom<Boards>
 {
     public BoardDto()
     {

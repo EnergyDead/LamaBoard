@@ -1,5 +1,5 @@
 ﻿using Application.Mappings;
-using ScrumBoard.Models;
+using Domain.Entities;
 
 namespace Application.Boards.Queries.GetTasks;
 

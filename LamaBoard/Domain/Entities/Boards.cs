@@ -1,4 +1,4 @@
-﻿namespace ScrumBoard.Models;
+﻿namespace Domain.Entities;
 
 public class Boards
 {

@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ScrumBoard.Models;
+using Domain.Entities;
+
 
 namespace Application.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<Projects> Projects { get; }
-    DbSet<ScrumBoard.Models.Boards> Boards { get; }
+    DbSet<Domain.Entities.Projects> Projects { get; }
+    DbSet<Domain.Entities.Boards> Boards { get; }
     DbSet<Tasks> Tasks { get; }
     Task<int> SaveChangesAsync( CancellationToken cancellationToken );
 }

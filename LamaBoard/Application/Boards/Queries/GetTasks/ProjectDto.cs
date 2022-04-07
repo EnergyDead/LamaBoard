@@ -1,9 +1,9 @@
 ﻿using Application.Mappings;
-using ScrumBoard.Models;
+using Domain.Entities;
 
 namespace Application.Boards.Queries.GetTasks;
 
-public class ProjectDto : IMapFrom<Projects>
+public class ProjectDto : IMapFrom<Domain.Entities.Projects>
 {
     public int Id { get; set; }
     public string Name { get; set; }

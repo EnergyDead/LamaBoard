@@ -1,10 +1,10 @@
 ﻿using Application.Interfaces;
+using Domain.Entities;
 using Duende.IdentityServer.EntityFramework.Options;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using ScrumBoard.Models;
 
 namespace Infrastructure.EntityFramework;
 
