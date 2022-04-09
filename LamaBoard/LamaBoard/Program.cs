@@ -1,8 +1,5 @@
-using Application.Behaviours;
-using Application.Projects.Queries;
 using FluentValidation;
-using Infrastructure.EntityFramework;
-using MediatR;
+using EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -12,19 +9,13 @@ var builder = WebApplication.CreateBuilder( args );
 
 builder.Services.AddAutoMapper( Assembly.GetExecutingAssembly() );
 builder.Services.AddValidatorsFromAssembly( Assembly.GetExecutingAssembly() );
-builder.Services.AddMediatR( Assembly.GetExecutingAssembly() );
 builder.Services.AddControllers();
-// builder.Services.AddTransient<GetProjectsWithPaginationQuery>();
-// builder.Services.AddMediatR( typeof( GetProjectsWithPaginationQuery ).GetTypeInfo().Assembly );
-builder.Services.AddMediatR( typeof( Application.AssemblyReference ).Assembly );
-// builder.Services.AddTransient( typeof( IPipelineBehavior<,> ), typeof( UnhandledExceptionBehaviour<,> ) );
-// builder.Services.AddTransient( typeof( IPipelineBehavior<,> ), typeof( AuthorizationBehaviour<,> ) );
-// builder.Services.AddTransient( typeof( IPipelineBehavior<,> ), typeof( ValidationBehaviour<,> ) );
-builder.Services.AddTransient( typeof( IPipelineBehavior<,> ), typeof( PerformanceBehaviour<,> ) );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHealthChecks().AddDbContextCheck<ApplicationDbContext>();
+builder.Services.AddDbContext<ApplicationDbContext>(
+        options => options.UseSqlServer( "name=ConnectionStrings:DefaultConnection" ) );
+
 
 var app = builder.Build();
 

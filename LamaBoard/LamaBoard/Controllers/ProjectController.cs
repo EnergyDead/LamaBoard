@@ -1,25 +1,22 @@
-﻿using Application.Boards.Queries.GetTasks;
-using Application.Models;
-using Application.Projects.Commands;
-using Application.Projects.Queries;
+﻿using Application.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LamaBoard.Controllers;
 
 [Route( "api/[controller]" )]
 [ApiController]
-public class ProjectController : ApiControllerBase
+public class ProjectController
 {
     [HttpGet]
-    public async Task<ActionResult<PaginatedList<ProjectBriefDto>>> GetProjectsWithPagination( [FromQuery] GetProjectsWithPaginationQuery query )
+    public async Task<ActionResult<ProjectBriefDto>> GetProjectsWithPagination()
     {
-        return await Mediator.Send(query);
+        throw new NotImplementedException();
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Create(CreateProjectCommand command)
+    public async Task<ActionResult<int>> Create(ProjectDto command)
     {
-        return await Mediator.Send( command );
+        throw new NotImplementedException();
     }
 
     [HttpGet( "{id}" )]

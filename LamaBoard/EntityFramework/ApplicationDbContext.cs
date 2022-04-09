@@ -1,10 +1,7 @@
-﻿using Application.Interfaces;
-using Domain.Entities;
-using Duende.IdentityServer.EntityFramework.Options;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
-namespace Infrastructure.EntityFramework;
+namespace EntityFramework;
 
 public class ApplicationDbContext : DbContext
 {
@@ -17,4 +14,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Boards> Boards => Set<Boards>();
 
     public DbSet<Tasks> Tasks => Set<Tasks>();
+
+    public ApplicationDbContext( DbContextOptions<ApplicationDbContext> options )
+    : base( options )
+    { }
 }
