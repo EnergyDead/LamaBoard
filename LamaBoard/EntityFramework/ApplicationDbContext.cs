@@ -1,9 +1,10 @@
-﻿using Domain.Entities;
+﻿using Application.Interfaces;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EntityFramework;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext() { }
 
@@ -14,6 +15,11 @@ public class ApplicationDbContext : DbContext
     public DbSet<Boards> Boards => Set<Boards>();
 
     public DbSet<Tasks> Tasks => Set<Tasks>();
+
+    public override int SaveChanges()
+    {
+        return base.SaveChanges();
+    }
 
     public ApplicationDbContext( DbContextOptions<ApplicationDbContext> options )
     : base( options )

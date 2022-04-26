@@ -1,4 +1,6 @@
 ﻿using Application.Dto;
+using Application.Interface;
+using Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LamaBoard.Controllers;
@@ -7,39 +9,40 @@ namespace LamaBoard.Controllers;
 [ApiController]
 public class ProjectController
 {
-    [HttpGet]
-    public async Task<ActionResult<ProjectBriefDto>> GetProjectsWithPagination()
+    private readonly IProjectService _projectService;
+
+    public ProjectController( IProjectService projectService )
     {
-        throw new NotImplementedException();
+        _projectService = projectService;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<int>> Create(ProjectDto command)
+    [HttpGet]
+    public async Task<PaginatedList<ProjectBriefDto>> GetProjectsWithPagination( int page, int pageSize )
     {
-        throw new NotImplementedException();
+        return await _projectService.PaginatedList( page, pageSize );
     }
 
     [HttpGet( "{id}" )]
-    public string Get( int id )
+    public async Task<ProjectDto> Get( int id )
     {
-        return "value";
+        return await _projectService.GetProject( id );
     }
 
-    // POST api/<ProjectController>
     [HttpPost]
-    public void Post( [FromBody] string value )
+    public async Task<int> Create( ProjectDto project )
     {
+        return await _projectService.Create( project );
     }
 
-    // PUT api/<ProjectController>/5
     [HttpPut( "{id}" )]
-    public void Put( int id, [FromBody] string value )
+    public async Task<bool> Update( int id, [FromBody] ProjectDto project )
     {
+        return await _projectService.Update( project );
     }
 
-    // DELETE api/<ProjectController>/5
     [HttpDelete( "{id}" )]
-    public void Delete( int id )
+    public async Task<bool> Delete( int id )
     {
+        return await _projectService.Delete( id );
     }
 }
